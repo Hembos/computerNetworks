@@ -413,42 +413,6 @@ def window_test():
     print("k")
     print(srp_k)
 
-
-def main():
-    global send_msg_queue
-    global answer_msg_queue
-
-    window_size = 2
-    max_number = 100
-    timeout = 0.5
-    loss_probability = 0.3
-    protocol = "GBN"
-    send_msg_queue = MsgQueue(loss_probability)
-    answer_msg_queue = MsgQueue(loss_probability)
-
-    for p in np.linspace(0, 1, 10):
-        window_size = 3
-
-    if protocol == "GBN":
-        sender_th = Thread(target=GBN_sender, args=(window_size, max_number, timeout))
-        receiver_th = Thread(target=GBN_receiver, args=(window_size,))
-    elif protocol == "SRP":
-        sender_th = Thread(target=SRP_sender, args=(window_size, max_number, timeout))
-        receiver_th = Thread(target=SRP_receiver, args=(window_size,))
-    else:
-        print("unknown protocol: ", protocol)
-        return
-
-    sender_th.start()
-    receiver_th.start()
-
-    sender_th.join()
-    receiver_th.join()
-
-    print(f"posted ({len(posted_msgs)}): \t", posted_msgs)
-    print(f"received ({len(received_msgs)}):\t", received_msgs)
-
-
 if __name__ == '__main__':
     # print("------------------------------------------")
     # print("losing")

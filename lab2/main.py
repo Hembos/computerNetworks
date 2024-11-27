@@ -324,6 +324,14 @@ def main():
         "neighbors": [[2, 1], [0, 2], [1, 0]]
     }
 
+    cur_topology = linear
+    print(f"\ntopology: {cur_topology['name']}\n")
+    simulate(cur_topology["nodes"], cur_topology["neighbors"])
+
+    cur_topology = star
+    print(f"\ntopology: {cur_topology['name']}\n")
+    simulate(cur_topology["nodes"], cur_topology["neighbors"])
+
     cur_topology = circle
     print(f"\ntopology: {cur_topology['name']}\n")
     simulate(cur_topology["nodes"], cur_topology["neighbors"])
